@@ -3,4 +3,7 @@
 	- Gemfile에 devise 추가
 	- rails g devise:install
 	- rails g devise users
-2. WeekPlan 모델 만들
+2. WeekPlan 모델 만들기
+	- rails g model Weekplan
+	- rails g model Todo title:string
+	- rake db:migrate
