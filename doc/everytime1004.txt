@@ -1,0 +1,6 @@
+3/29
+1. 유저 모델 만들기
+	- Gemfile에 devise 추가
+	- rails g devise:install
+	- rails g devise users
+2. WeekPlan 모델 만들

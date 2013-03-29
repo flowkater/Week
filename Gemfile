@@ -30,6 +30,9 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave'
 
+# Diagram
+gem 'rails-erd'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
