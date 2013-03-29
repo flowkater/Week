@@ -7,3 +7,7 @@
 	- rails g model Weekplan
 	- rails g model Todo title:string
 	- rake db:migrate
+3. 관계 설정
+	- User has many Weekplans
+	- Weekplan has many Todo
+	
