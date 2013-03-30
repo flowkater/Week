@@ -1,0 +1,50 @@
+// Example using 'Cerulean' bootswatch
+//
+// First import journal variables
+@import "bootswatch/cerulean/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
+
+// Responsive styles go here in case you want them
+@import "bootstrap-responsive";
+
+// And finally bootswatch style itself
+@import "bootswatch/cerulean/bootswatch";
+
+// Whatever application styles you have go last
+// @import "bootswatch/base";
+
+
+.main{
+	.main-loginbtn{
+		float: right;
+		.facebookbtn{
+			padding: 7px 15px;
+		}
+	}
+}
+
+.newsfeeds{
+	.row{
+		.span4{
+			.row.user-weekplan{
+				background-image: image-url("darkgrain.png");
+				.span1{
+					margin-top: 10px;
+					.user-img{
+						width: 70px;
+						height: 80px;
+					}
+				}
+				.span3{
+					margin-top: 10px;
+				}
+				padding-bottom: 10px;
+			}
+		}
+	}	
+}

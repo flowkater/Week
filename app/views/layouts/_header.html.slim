@@ -1,0 +1,12 @@
+.navbar.navbar-fixed-top
+	.navbar-inner
+		.container
+			a.btn.btn-navbar data-toggle="collapse" data-target=".new-collapse"
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			= link_to "7Days", root_path, class: "brand"
+			.nav-collapse.collapse#main-menu
+				ul.nav.pull-right#main-menu-right
+					li
+						= link_to "Login", "#"
