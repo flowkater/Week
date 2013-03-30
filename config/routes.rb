@@ -3,6 +3,10 @@ Week::Application.routes.draw do
 
   devise_for :users
 
+  resources :weekplans do
+    resources :todos
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

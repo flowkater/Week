@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   # user and weekplans model
-  has_many :weekplans
+  has_many :weekplans, :dependent => :destroy
 end
