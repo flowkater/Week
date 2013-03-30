@@ -1,4 +1,6 @@
 Week::Application.routes.draw do
+  root to: "main#home"
+
   devise_for :users
 
   # The priority is based upon order of creation:
