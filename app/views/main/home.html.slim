@@ -6,25 +6,27 @@
 		= link_to "Login with Facebook", "#", class: "btn btn-inverse facebookbtn"
 
 .newsfeeds
-	h2 4월 1일부터 4월 7일
-	.row
-		.span4
-			.row.user-weekplan
-				.span1
-					= image_tag "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-snc6/603258_407699975973346_1311881605_n.jpg", class: "user-img"
-				.span3
-					ul
-						li 간헐적 단신하기
-						li 아침에 6시 일어나기
-						li 국선도 매일 가기
-		.span4
-			.row.user-weekplan
-				.span1
-					= image_tag "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-snc6/603258_407699975973346_1311881605_n.jpg", class: "user-img"
-				.span3
-					ul
-						li 간헐적 단신하기
-						li 아침에 6시 일어나기
-						li 국선도 매일 가기
+	= render 'form_thisWeekPeople'
+	/ h2 4월 1일부터 4월 7일
+	/ .row
+	/ 	.span4
+	/ 		.row.user-weekplan
+	/ 			.span1
+	/ 				= image_tag "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-snc6/603258_407699975973346_1311881605_n.jpg", class: "user-img"
+	/ 			.span3
+	/ 				ul
+	/ 					li 간헐적 단신하기
+	/ 					li 아침에 6시 일어나기
+	/ 					li 국선도 매일 가기
+	/ 	.span4
+	/ 		.row.user-weekplan
+	/ 			.span1
+	/ 				= image_tag "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-snc6/603258_407699975973346_1311881605_n.jpg", class: "user-img"
+	/ 				= thisWeekPeople
+	/ 			.span3
+	/ 				ul
+	/ 					li 간헐적 단신하기
+	/ 					li 아침에 6시 일어나기
+	/ 					li 국선도 매일 가기
 		
 
