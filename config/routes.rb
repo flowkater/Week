@@ -3,8 +3,9 @@ Week::Application.routes.draw do
 
   root to: "main#home"
 
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-  controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks"} do
+    get '/users/logout' => 'devise/sessions#destroy'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
