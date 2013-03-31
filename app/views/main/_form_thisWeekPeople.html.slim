@@ -8,32 +8,6 @@
           .span3
             ul
               li = f.object.title
-              li = (f.object.todos.first.title)
-              li 국선도 매일 가기
-  /   .span4
-  /     .row.user-weekplan
-  /       .span1
-  /         = image_tag "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-snc6/603258_407699975973346_1311881605_n.jpg", class: "user-img"
-  /         = thisWeekPeople
-  /       .span3
-  /         ul
-  /           li 간헐적 단신하기
-  /           li 아침에 6시 일어나기
-  /           li 국선도 매일 가기  
-  / .field
-  / = f.label :title
-  / = f.text_field :title
-  / br/
-  / = f.label :public_friends
-  / = f.check_box :public_friends
-  / br/
-  / = f.label :public_all
-  / = f.check_box :public_all
-  / br/
-
-  / = f.fields_for :todos do |builder|
-  /   - render 'todo_fields', f: builder
-
-  / = link_to_add_fields 'Add Todo', f, :todos
-
-  / .actions = f.submit 'Save'
+              ul
+                = f.object.todos.each do |todo|
+                  li = link_to (todo.title) 
