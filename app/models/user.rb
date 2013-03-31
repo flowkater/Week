@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+                    
   # attr_accessible :title, :body
 
   # user and weekplans model
@@ -63,20 +65,42 @@ class User < ActiveRecord::Base
      facebook.get_connections("me", "friends") 
   end
 
-  # user의 친구중에 가입된 친구 리스트 => @signed_up_friends
-  # user의 친구중에 가입 안된 친구 리스트 => @unsigned_up_friends
-  #  [{"name"=>"jiwon"}, {"name"=>"jiwon"}]
-  def signup_or_unsignup_friends
-    @signed_up_friends = []
-    @unsigned_up_friends = []
+  # user의 친구중에 가입된 친구 리스트 반환 메서드
+  #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태    
+  def joined_friends
+    friends = []
 
     friends_info_list.each do |friend_info|
       if User.find_by_uid(friend_info["id"])!=nil
-        @signed_up_friends << friend_info 
-      else
-        @unsigned_up_friends << friend_info
+
+        friends << friend_info 
       end
     end
+
+    friends
   end
+
+  # user의 친구중에 가입 안된 친구 리스트 반환 메서드
+  #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태
+  def not_joined_friends
+    friends = []
+
+    friends_info_list.each do |friend_info|
+      if User.find_by_uid(friend_info["id"])==nil
+        friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
+        friends << friend_info 
+      end
+    end
+
+    friends
+  end
+
+  # bring fb pic url
+  def fb_profile_pic(uid)
+    pic = facebook.fql_query("SELECT pic_big FROM profile WHERE id ='#{uid}'")
+    pic[0]["pic_big"]
+  end
+
+
 
 end
