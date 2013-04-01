@@ -1,5 +1,6 @@
 Week::Application.routes.draw do
-  get "tests/show"
+  
+  match "facebook", "main#facebook"
 
   root to: "main#home"
 

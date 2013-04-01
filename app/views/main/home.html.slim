@@ -21,7 +21,6 @@
 	.main-loginbtn
 		= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-inverse facebookbtn", id: "login"
 
-
 / .newsfeeds
 / 	h2 4월 1일부터 4월 7일
 / 	.rjow
@@ -44,4 +43,5 @@
 / 						li 아침에 6시 일어나기
 / 						li 국선도 매일 가기
 		
-
+.newsfeeds
+	= render 'form_thisWeekPeople'
