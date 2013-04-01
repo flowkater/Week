@@ -21,11 +21,6 @@
 	.main-loginbtn
 		= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-inverse facebookbtn", id: "login"
 
-.container
-	- if user_session
-		- current_user.joined_friends.each do |f|
-			p = f['name']
-			p = f['id']
 
 / .newsfeeds
 / 	h2 4월 1일부터 4월 7일

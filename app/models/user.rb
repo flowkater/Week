@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # user and weekplans model
   has_many :weekplans, dependent: :destroy
 
- ##Login
+  #Login
   def self.from_omniauth(auth)
       where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
         user.name = auth.info.name
@@ -25,12 +25,6 @@ class User < ActiveRecord::Base
         user.auth_expires_at = Time.at(auth.credentials.expires_at)
         user.save!
       end
-  end
-
-  def token_update(auth)
-    token = auth.credentials.token
-    auth_expires_at = Time.at(auth.credentials.expires_at)
-    save!
   end
 
   def self.new_with_session(params, session)
@@ -75,10 +69,9 @@ class User < ActiveRecord::Base
   #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태    
   def joined_friends
     friends = []
-
     friends_info_list.each do |friend_info|
       if User.find_by_uid(friend_info["id"])!=nil
-      # if User.include(:uid)
+        friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
         friends << friend_info 
       end
     end
