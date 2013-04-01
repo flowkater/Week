@@ -5,6 +5,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email,              :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
 
+      t.string :name
+
+      ## Omniauthable
+      t.string :provider
+      t.string :uid
+      t.string :token
+      t.datetime :auth_expires_at
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

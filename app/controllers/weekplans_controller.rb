@@ -1,34 +1,18 @@
 class WeekplansController < ApplicationController
 	def index
-    @weekplans = Weekplan.all
- 
-    respond_to do |format|
-      format.html #index.html.slim
-      format.json { render json: @weekplans }
-    end
+    @weekplans = Weekplan.all   
   end
 
   def new
     @weekplan = Weekplan.new
-
-    respond_to do |format|
-      format.html # new.html.slim
-      format.json { render json: @weekplan }
-    end
   end
 
   def edit
-  	@weekplan = Weekplan.find(params[:id])
+    @weekplan = Weekplan.find(params[:id])
   end
 
 	def show
-  	@weekplan = Weekplan.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.slim
-      
-      format.json { render json: @weekplan }
-    end
+    @weekplan = Weekplan.find(params[:id])
   end
 
   def create
@@ -36,11 +20,9 @@ class WeekplansController < ApplicationController
 
     respond_to do |format|
       if @weekplan.save
-        format.html { redirect_to @weekplan, notice: 'Weekplans was successfully created.' }
-        format.json { render json: @weekplan, status: :created, location: @weekplan }
+        redirect_to @weekplan, notice: 'Weekplans was successfully created.'
       else
-        format.html { render action: "new" }
-        format.json { render json: @weekplan.errors, status: :unprocessable_entity }
+        render action: "new"
       end
     end
   end
@@ -50,11 +32,9 @@ class WeekplansController < ApplicationController
 
     respond_to do |format|
       if @weekplan.update_attributes(params[:weekplan])
-        format.html { redirect_to @weekplan, notice: 'Weekplan was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @weekplan, notice: 'Weekplan was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @weekplan.errors, status: :unprocessable_entity }
+        render action: "edit"
       end
     end
   end
@@ -62,11 +42,6 @@ class WeekplansController < ApplicationController
   def destroy
     @weekplan = Weekplan.find(params[:id])
     @weekplan.destroy
-
-    respond_to do |format|
-      format.html { redirect_to weekplans_url }
-      format.json { head :no_content }
-    end
+    redirect_to weekplans_url
   end
-
 end
