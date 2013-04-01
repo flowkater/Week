@@ -1,0 +1,25 @@
+= form_for @weekplan do |f|
+  - if @weekplan.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
+      ul
+        - @weekplan.errors.full_messages.each do |message|
+          li = message
+
+  .field
+  = f.label :title
+  = f.text_field :title
+  br/
+  = f.label :public_friends
+  = f.check_box :public_friends
+  br/
+  = f.label :public_all
+  = f.check_box :public_all
+  br/
+
+  = f.fields_for :todos do |builder|
+    - render 'todo_fields', f: builder
+
+  = link_to_add_fields 'Add Todo', f, :todos
+
+  .actions = f.submit 'Save'

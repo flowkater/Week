@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   # user and weekplans model
-  has_many :weekplans
+  has_many :weekplans, dependent: :destroy
 
  ##Login
 
@@ -100,7 +100,4 @@ class User < ActiveRecord::Base
     pic = facebook.fql_query("SELECT pic_big FROM profile WHERE id ='#{uid}'")
     pic[0]["pic_big"]
   end
-
-
-
 end
