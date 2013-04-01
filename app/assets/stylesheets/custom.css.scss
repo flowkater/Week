@@ -21,30 +21,31 @@ body { padding-top: 60px; }
 
 .main{
 	.main-loginbtn{
-		float: right;
+		width: 200px;
+		margin: 0 45%;
 		.facebookbtn{
 			padding: 7px 15px;
 		}
 	}
 }
 
-.newsfeeds{
-	.row{
-		.span4{
-			.row.user-weekplan{
-				background-image: image-url("darkgrain.png");
-				.span1{
-					margin-top: 10px;
-					.user-img{
-						width: 70px;
-						height: 80px;
-					}
-				}
-				.span3{
-					margin-top: 10px;
-				}
-				padding-bottom: 10px;
-			}
-		}
-	}	
-}
+// .newsfeeds{
+// 	.row{
+// 		.span4{
+// 			.row.user-weekplan{
+// 				background-image: image-url("darkgrain.png");
+// 				.span1{
+// 					margin-top: 10px;
+// 					.user-img{
+// 						width: 70px;
+// 						height: 80px;
+// 					}
+// 				}
+// 				.span3{
+// 					margin-top: 10px;
+// 				}
+// 				padding-bottom: 10px;
+// 			}
+// 		}
+// 	}	
+// }

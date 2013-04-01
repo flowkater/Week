@@ -6,6 +6,5 @@ html
 		= javascript_include_tag "application"
 		= csrf_meta_tags
 	body
-		.container
-			= render 'layouts/header'
-			= yield
+		= render 'layouts/header'
+		= yield
