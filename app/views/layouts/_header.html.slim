@@ -9,4 +9,10 @@
 			.nav-collapse.collapse#main-menu
 				ul.nav.pull-right#main-menu-right
 					li
-						= link_to "Login", "#"
+						- if user_signed_in?
+							| Logged in as 
+							strong= current_user.name
+							= link_to "Logout", destroy_user_session_path, method: :delete, id: "logout"
+
+						- else
+							= link_to "Login", "#"
