@@ -6,8 +6,7 @@ class CreateWeekplans < ActiveRecord::Migration
     	t.references :user
 
   		# 3-30.md - add columns
-    	t.string :title
-    	t.integer :progress_rate
+    	t.integer :progress_rate, default: 0
     	t.boolean :public_friends
     	t.boolean :public_all
 

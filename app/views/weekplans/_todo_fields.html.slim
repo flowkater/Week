@@ -3,11 +3,7 @@ fieldset
 	= f.label :title, "title"
 	= f.text_field :title
 	br/
-
-	= f.label :description, "description"
-	= f.text_field :description
-	br/
-
+	
 	= f.label :category, "category"
 	= f.select :category, options_for_select(["hobby", "etc", "etc2"])
 	br/
