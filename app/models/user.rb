@@ -55,27 +55,34 @@ class User < ActiveRecord::Base
  ##Facebook Graph API
   
   #FB Graph API연결할 메서드
+  # 세션 문제... 여기에 새 토큰 가져오는 코드 추가하기!!!
   def facebook
     @facebook ||= Koala::Facebook::API.new(token) # When facebook login, return token
   end  
 
   # user의 친구 목록 가져오기
   #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태
-  def friends_info_list
-     facebook.get_connections("me", "friends")
+  # def friends_info_list
+  #    facebook.get_connections("me", "friends")
+  # end
+  def friends_uids
+     facebook.get_connections("me", "friends").collect {|f| f["id"]}
   end
 
   # user의 친구중에 가입된 친구 리스트 반환 메서드
   #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태    
+  # def joined_friends
+  #   friends = []
+  #   friends_info_list.each do |friend_info|
+  #     if User.find_by_uid(friend_info["id"])!=nil
+  #       friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
+  #       friends << friend_info 
+  #     end
+  #   end
+  #   friends
+  # end
   def joined_friends
-    friends = []
-    friends_info_list.each do |friend_info|
-      if User.find_by_uid(friend_info["id"])!=nil
-        friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
-        friends << friend_info 
-      end
-    end
-    friends
+    u = User.where('uid IN (?)', friends_uids)
   end
 
   # user의 친구중에 가입 안된 친구 리스트 반환 메서드
@@ -93,9 +100,21 @@ class User < ActiveRecord::Base
     friends
   end
 
+  # #state = "joined", "not_joined"
+  # def friends_list(state)
+  #   friends = []
+  #   friends_info_list.each do |friend_info|
+  #     if User.find_by_uid(friend_info["id"])!=nil 
+  #       friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
+  #       friends << friend_info 
+  #     end
+  #   end
+  #   friends
+  # end
+
   # bring fb pic url
   def fb_profile_pic(uid)
-    pic = facebook.fql_query("SELECT pic_big FROM profile WHERE id ='#{uid}'")
-    pic[0]["pic_big"]
+    pic = facebook.fql_query("SELECT pic FROM profile WHERE id ='#{uid}'")
+    pic[0]["pic"]
   end
 end

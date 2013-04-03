@@ -4,6 +4,7 @@ gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'thin'
 
 gem 'sqlite3'
 
@@ -19,6 +20,7 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook', '1.4.0'
 gem 'koala'
+
 
 # RESTful API
 gem 'rabl'

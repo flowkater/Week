@@ -25,3 +25,11 @@ window.fbAsyncInit = ->
   if $('#logout').length > 0
     FB.getLoginStatus (response) ->
       window.location = $('#logout').attr('href') if !response.authResponse
+
+  
+  $('#app_request').click (e) ->
+    FB.ui(
+      method: 'apprequests',
+      message: 'You should learn more about this awesome game.',
+      filters: ['app_non_users']
+    )
