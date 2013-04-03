@@ -13,6 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :token
       t.datetime :auth_expires_at
 
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

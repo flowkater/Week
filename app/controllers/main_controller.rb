@@ -1,13 +1,13 @@
 # encoding : utf-8
 class MainController < ApplicationController
-	before_filter :user_session_check, :only => [:facebook]
+  before_filter :user_session_check, :only => [:facebook]
   
   def home
 		@this_weekplans = Weekplan.thisweek
   end
 
   def facebook
-  		@not_joined_friends = current_user.joined_friends.page(params[:page]).per(5)
+  		@joined_friends = current_user.joined_friends.page(params[:page]).per(5)
 
   end
 

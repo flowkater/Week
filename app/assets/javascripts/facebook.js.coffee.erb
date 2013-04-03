@@ -22,9 +22,14 @@ window.fbAsyncInit = ->
       FB.logout() if response.authResponse
     true
 
-  if $('#logout').length > 0
-    FB.getLoginStatus (response) ->
-      window.location = $('#logout').attr('href') if !response.authResponse
+  
+  FB.getLoginStatus (response) ->
+    if !response.authResponse
+      if $('#logout').length > 0
+        window.location = $('#logout').attr('href')
+    else if response.authResponse 
+      if response.authResponse.userID != "#{current_user.uid}"
+        window.location = $('#logout').attr('href')
 
   
   $('#app_request').click (e) ->

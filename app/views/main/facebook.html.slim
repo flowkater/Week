@@ -1,6 +1,6 @@
 .container
-	= paginate @not_joined_friends
-	- @not_joined_friends.each do |f|
+	= paginate @joined_friends
+	- @joined_friends.each do |f|
 			br/
 			br/
 			br/
@@ -10,5 +10,6 @@
 
 			p = f.name
 			p = f.email
-			= image_tag  p = "http://graph.facebook.com/#{f.uid}/picture"
+			/ = image_tag  p = "http://graph.facebook.com/#{f.uid}/picture"
+			= image_tag p = "https://graph.facebook.com/#{f.uid}/picture?type=large"
 		
