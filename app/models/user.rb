@@ -68,14 +68,17 @@ class User < ActiveRecord::Base
   # user의 친구중에 가입된 친구 리스트 반환 메서드
   #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태    
   def joined_friends
-    friends = []
-    friends_info_list.each do |friend_info|
-      if User.find_by_uid(friend_info["id"])!=nil
-        friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
-        friends << friend_info 
-      end
-    end
-    friends
+    @friends_uids = friends_info_list.collect{|f| f["id"]}
+    @friends = User.where('uid IN (?)', @friends_uids)
+    
+    # friends = []
+    # friends_info_list.each do |friend_info|
+    #   if User.find_by_uid(friend_info["id"]) != nil
+    #     friend_info["pic_url"] = fb_profile_pic(friend_info["id"])
+    #     friends << friend_info 
+    #   end
+    # end
+    # friends
   end
 
   # user의 친구중에 가입 안된 친구 리스트 반환 메서드
