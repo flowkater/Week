@@ -22,6 +22,18 @@ window.fbAsyncInit = ->
       FB.logout() if response.authResponse
     true
 
+  
   if $('#logout').length > 0
     FB.getLoginStatus (response) ->
-      window.location = $('#logout').attr('href') if !response.authResponse
+      if !response.authResponse 
+      #로그인이 안되어 있는 경우, 우리앱에 가입안된 사용자가 로그인한 경우
+        window.location = $('#logout').attr('href')
+      #여기에 response.authResponse.accessToken이 다른 경우, 로그인링크로 넘기기.. ? 
+
+  # facebook 액션에 '가입안한 친구 초대하기' 다이얼로그 띄우는 부분
+  $('#app_request').click (e) ->
+    FB.ui(
+      method: 'apprequests',
+      message: 'You should learn more about this awesome game.',
+      filters: ['app_non_users']
+    )

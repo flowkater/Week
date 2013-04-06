@@ -1,7 +1,15 @@
 .container
-	- if user_session
-		- current_user.not_joined_friends.each do |f|
-			p = f['name']
-			p = f['id']
-			p = f['pic_url']
+	= paginate @joined_friends
+	- @joined_friends.each do |f|
+			br/
+			br/
+			br/
+
+			= link_to '가입안한 친구 초대하기', '#', :id => :app_request
+
+
+			p = f.name
+			p = f.email
+			/ = image_tag  p = "http://graph.facebook.com/#{f.uid}/picture"
+			= image_tag p = "https://graph.facebook.com/#{f.uid}/picture?type=large"
 		
