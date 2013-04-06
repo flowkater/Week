@@ -60,14 +60,18 @@ class User < ActiveRecord::Base
     @facebook ||= Koala::Facebook::API.new(token) 
   end  
 
+  # 로그인한 사용자 친구들 uid만 배열로 담기
+  # rescue부분은 유효하지 않은 토큰문제때문에 에러발생시 결과값 대신 nil반환하여 에러가 발생하지 않도록 임시 조취..
   def friends_uids
     facebook.get_connections("me", "friends").collect {|f| f["id"]} 
   rescue Koala::Facebook::AuthenticationError 
     nil 
   end
 
+  # 가입한 친구 찾기. IN연산자 이용 query문 남발 문제 해결
   def joined_friends
     u = User.where('uid IN (?)', friends_uids)
+    # u = User.find_by_uid(friends_uids)
   end
 
   # user의 친구 목록 가져오기
@@ -107,7 +111,7 @@ class User < ActiveRecord::Base
 
 
   # # bring fb pic url
-  # def self.fb_profile_pic(uid)
+  # def fb_profile_pic(uid)
   #   pic = facebook.fql_query("SELECT pic_big FROM profile WHERE id ='#{uid}'")
   #   pic[0]["pic_big"]
   # end
