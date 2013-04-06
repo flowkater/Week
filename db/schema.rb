@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20130329110942) do
     t.string   "title"
     t.integer  "weekplan_id"
     t.string   "category"
-    t.text     "description"
     t.boolean  "todo_check"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -48,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20130329110942) do
 
   create_table "weekplans", :force => true do |t|
     t.integer  "user_id"
-    t.string   "title"
     t.integer  "progress_rate"
     t.boolean  "public_friends"
     t.boolean  "public_all"

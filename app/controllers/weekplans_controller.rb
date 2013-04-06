@@ -1,14 +1,22 @@
 class WeekplansController < ApplicationController
 	def index
-    @weekplans = Weekplan.all   
+    @weekplans = Weekplan.find_all_by_user_id(current_user.id)   
   end
 
   def new
-    @weekplan = Weekplan.new
+    if @weekplan = Weekplan.has_one_week_plan?(current_user.id) != []
+      redirect_to edit_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
+    else
+      @weekplan = Weekplan.new
+    end
   end
 
   def edit
-    @weekplan = Weekplan.find(params[:id])
+    if Weekplan.currentuser_this_week(current_user.id)
+      @weekplan = Weekplan.currentuser_this_week(current_user.id)
+    else
+      redirect_to new_weekplan_path, notice: "You don't have Schedule this week"
+    end
   end
 
 	def show
@@ -16,7 +24,7 @@ class WeekplansController < ApplicationController
   end
 
   def create
-    @weekplan = Weekplan.new(params[:weekplan])
+    @weekplan = current_user.weekplans.new(params[:weekplan])
 
     respond_to do |format|
       if @weekplan.save
@@ -28,7 +36,7 @@ class WeekplansController < ApplicationController
   end
 
   def update
-    @weekplan = Weekplan.find(params[:id])
+    @weekplan = Weekplan.currentuser_this_week(current_user.id)
 
     respond_to do |format|
       if @weekplan.update_attributes(params[:weekplan])
@@ -40,7 +48,7 @@ class WeekplansController < ApplicationController
   end
 
   def destroy
-    @weekplan = Weekplan.find(params[:id])
+    @weekplan = Weekplan.currentuser_this_week(current_user.id)
     @weekplan.destroy
     redirect_to weekplans_url
   end
