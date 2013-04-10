@@ -1,9 +1,9 @@
 class WeekplansController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :user_session_check
 
 	def index
-    @weekplans = Weekplan.find_all_by_user_id(current_user.id)   
+      @weekplans = Weekplan.find_all_by_user_id(current_user.id)
   end
 
   def new
