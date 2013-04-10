@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130401033651) do
   create_table "todos", :force => true do |t|
     t.string   "title"
     t.integer  "weekplan_id"
+    t.string   "description"
     t.string   "category"
     t.boolean  "todo_check"
     t.datetime "created_at",  :null => false

@@ -8,6 +8,7 @@ class CreateTodos < ActiveRecord::Migration
 
     	# 3-30.md - add columns
     	t.string :title
+      t.string :description
     	t.string :category
     	t.boolean :todo_check
 
