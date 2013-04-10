@@ -8,8 +8,8 @@ Week::Application.routes.draw do
     get '/users/logout' => 'devise/sessions#destroy'
   end
 
-  resources :weekplans do
-    resources :todos
+  resources :users do
+    resources :weekplans 
   end
 
   # The priority is based upon order of creation:

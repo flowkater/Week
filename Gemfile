@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook', '1.4.0'
 gem 'koala'
+gem 'sidekiq'
 
 
 # RESTful API

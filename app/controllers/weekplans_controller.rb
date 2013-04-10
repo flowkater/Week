@@ -1,14 +1,15 @@
 class WeekplansController < ApplicationController
 
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
 
 	def index
     @weekplans = Weekplan.find_all_by_user_id(current_user.id)   
   end
 
   def new
-    if @weekplan = Weekplan.has_one_week_plan?(current_user.id) != []
-      redirect_to edit_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
+    @weekplan = Weekplan.has_one_week_plan?(current_user.id)
+    if @weekplan.blank?
+      redirect_to edit_user_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
     else
       @weekplan = Weekplan.new
     end
@@ -18,7 +19,7 @@ class WeekplansController < ApplicationController
     if Weekplan.currentuser_this_week(current_user.id)
       @weekplan = Weekplan.currentuser_this_week(current_user.id)
     else
-      redirect_to new_weekplan_path, notice: "You don't have Schedule this week"
+      redirect_to new_user_weekplan_path, notice: "You don't have Schedule this week"
     end
   end
 
@@ -28,10 +29,15 @@ class WeekplansController < ApplicationController
 
   def create
     @weekplan = current_user.weekplans.new(params[:weekplan])
+    #Facebook code 넣기
+    if current_user && @weekplan.save
+      WeekplansWorker.perform_async(@weekplan.id)
+      # User.share_post(current_user.id, post_url(@weekplan))
+    end
 
     respond_to do |format|
       if @weekplan.save
-        redirect_to @weekplan, notice: 'Weekplans was successfully created.'
+        redirect_to [current_user, @weekplan], notice: 'Weekplans was successfully created.'
       else
         render action: "new"
       end
@@ -43,7 +49,7 @@ class WeekplansController < ApplicationController
 
     respond_to do |format|
       if @weekplan.first.update_attributes(params[:weekplan])
-        redirect_to @weekplan, notice: 'Weekplan was successfully updated.'
+        redirect_to [current_user, @weekplan], notice: 'Weekplan was successfully updated.'
       else
         render action: "edit"
       end
@@ -53,6 +59,6 @@ class WeekplansController < ApplicationController
   def destroy
     @weekplan = Weekplan.currentuser_this_week(current_user.id)
     @weekplan.destroy
-    redirect_to weekplans_url
+    redirect_to user_weekplans_url
   end
 end

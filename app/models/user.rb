@@ -74,6 +74,11 @@ class User < ActiveRecord::Base
     # u = User.find_by_uid(friends_uids)
   end
 
+  def self.share_post(id, url)
+    user = User.find(id)
+    user.facebook.put_connections("me", "wonnyfb:post", weekplan: url)
+  end
+
   # user의 친구 목록 가져오기
   #  [{"name"=>"won", "id"=>"1234567.."}, {"name"=>"bob", "id"=>"22224567.."}]의 형태
   # def friends_info_list

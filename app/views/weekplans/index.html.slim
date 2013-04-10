@@ -5,7 +5,7 @@
         h3
           img.profile_pic src="https://graph.facebook.com/#{current_user.uid}/picture?type=large"
         p 꼭 해내자! 이번주는 기적으로 내가 해내겠다!!
-        = button_to "나의 일주일계획 보러가기", weekplan_path(id: current_user.weekplans.currentuser_this_week(current_user.id)), method: :get, class: "btn btn-info"
+        = button_to "나의 일주일계획 보러가기", user_weekplan_path(id: current_user.weekplans.currentuser_this_week(current_user.id)), method: :get, class: "btn btn-info"
       ul.nav.nav-list
       .sticker
         h4 친구들의 최근 활동

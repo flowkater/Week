@@ -1,3 +1,9 @@
+- content_for :head do
+  = tag :meta, property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"]
+  = tag :meta, property: "og:type", content: "wonnyfb:weekplan"
+  = tag :meta, property: "og:url", content: weekplan_url(@weekplan)
+  = tag :meta, property: "og:title", content: "4월 2주 ~~~"
+
 .container
   .row
     .span3
