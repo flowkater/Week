@@ -1,4 +1,7 @@
 class WeekplansController < ApplicationController
+
+  before_filter :authenticate_user!
+
 	def index
     @weekplans = Weekplan.find_all_by_user_id(current_user.id)   
   end
@@ -39,7 +42,7 @@ class WeekplansController < ApplicationController
     @weekplan = Weekplan.currentuser_this_week(current_user.id)
 
     respond_to do |format|
-      if @weekplan.update_attributes(params[:weekplan])
+      if @weekplan.first.update_attributes(params[:weekplan])
         redirect_to @weekplan, notice: 'Weekplan was successfully updated.'
       else
         render action: "edit"

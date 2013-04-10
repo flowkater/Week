@@ -15,4 +15,5 @@
 							= link_to "Logout", destroy_user_session_path, method: :delete, id: "logout"
 
 						- else
-							= link_to "Login", "#"
+							= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-inverse facebookbtn", id: "login"
+
