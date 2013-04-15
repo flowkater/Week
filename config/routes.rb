@@ -1,5 +1,7 @@
 Week::Application.routes.draw do
 
+  get "activities/index"
+
   match "/facebook" => "main#facebook"
 
   root to: "main#home"
@@ -12,6 +14,8 @@ Week::Application.routes.draw do
     resources :todos
   end
 
+  resources :activities
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

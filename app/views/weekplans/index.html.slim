@@ -38,6 +38,7 @@
               - @weekplans.each do |weekplan|
                 - weekplan.todos.each do |todo|
                   .span.label = todo.title
+                  br/
           .friend_img
             img.profile_f_pic src="https://graph.facebook.com/#{current_user.uid}/picture?type=large"
             .friend-sticker
