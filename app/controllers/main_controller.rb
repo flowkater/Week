@@ -11,6 +11,7 @@ class MainController < ApplicationController
         redirect_to new_weekplans_path
       end
     end
+    
 		# @friends = current_user.joined_friends
   end
 

@@ -1,13 +1,17 @@
 class WeekplansController < ApplicationController
 
-  before_filter :user_session_check
+  
 
 	def index
-      @weekplans = Weekplan.find_all_by_user_id(current_user.id)
+    @weekplans = Weekplan.find_all_by_user_id(current_user.id)
+    if @weekplans.blank?
+      redirect_to new_weekplan_path
+    end
   end
 
   def new
-    if @weekplan = Weekplan.has_one_week_plan?(current_user.id) != []
+    @weekplan = Weekplan.has_one_week_plan?(current_user.id)
+    if @weekplan.blank?
       redirect_to edit_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
     else
       @weekplan = Weekplan.new

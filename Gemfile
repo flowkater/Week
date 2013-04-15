@@ -13,6 +13,7 @@ gem 'slim-rails'
 gem 'haml2slim'
 gem 'slim'
 gem 'simple_form'
+gem 'public_activity'
 
 ## authenticate
 gem 'devise'

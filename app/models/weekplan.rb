@@ -1,4 +1,8 @@
 class Weekplan < ActiveRecord::Base
+  # public_activity
+  include PublicActivity::Model
+  tracked
+
   # attr_accessible :title, :body
   attr_accessible :progress_rate, :public_friends, :public_all, :todos_attributes
 

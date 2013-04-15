@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   # user and weekplans model
-  has_many :weekplans, dependent: :destroy
+  has_many :weekplans, dependent: :destroy  
 
   #Login
   def self.from_omniauth(auth)
