@@ -1,5 +1,12 @@
 Week::Application.routes.draw do
 
+  get "admin_pages/index"
+
+  devise_for :admins, path_names: {sign_in: "login", sign_out: "logout"} do
+    get '/admins/logout' => 'devise/sessions#destroy'
+    match 'super' => 'devise/sessions#new'
+  end#, :controllers => { :sessions => "admins/sessions" }
+
   get "activities/index"
 
   match "/facebook" => "main#facebook"
@@ -15,6 +22,8 @@ Week::Application.routes.draw do
   end
 
   resources :activities
+
+  match "/admin_pages" => "admin_pages#index"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

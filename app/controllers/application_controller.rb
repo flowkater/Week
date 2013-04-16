@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, :notice => "Please Login"
     end
   end
+
+  def after_sign_in_path_for(resource)
+	 admin_pages_path
+	end
   
 end
