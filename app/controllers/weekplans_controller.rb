@@ -1,9 +1,8 @@
 class WeekplansController < ApplicationController
 
-  
-
 	def index
     @weekplans = Weekplan.find_all_by_user_id(current_user.id)
+    @activities = PublicActivity::Activity.order("created_at desc")
     if @weekplans.blank?
       redirect_to new_weekplan_path
     end
@@ -12,9 +11,9 @@ class WeekplansController < ApplicationController
   def new
     @weekplan = Weekplan.has_one_week_plan?(current_user.id)
     if @weekplan.blank?
-      redirect_to edit_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
-    else
       @weekplan = Weekplan.new
+    else
+      redirect_to edit_weekplan_path(@weekplan), notice: 'You already have Schedule this week'
     end
   end
 

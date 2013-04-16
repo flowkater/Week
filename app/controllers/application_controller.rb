@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	include PublicActivity::StoreController
   protect_from_forgery
 
   def user_session_check

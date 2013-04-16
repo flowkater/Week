@@ -3,6 +3,8 @@ class Weekplan < ActiveRecord::Base
   include PublicActivity::Model
   tracked
 
+  tracked owner: ->(controller, model) { controller.current_user }
+
   # attr_accessible :title, :body
   attr_accessible :progress_rate, :public_friends, :public_all, :todos_attributes
 
